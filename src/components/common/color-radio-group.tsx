@@ -22,7 +22,7 @@ export function ColorRadioGroup({
   return (
     <div className="flex flex-col gap-2">
       <RadioGroup className="flex gap-4" value={value} {...rest}>
-        {options.map(({ value, hex }) => (
+        {options.map(({ value, label, hex }) => (
           <div
             key={value}
             style={{ backgroundColor: hex }}
@@ -34,6 +34,7 @@ export function ColorRadioGroup({
               value={value}
             />
             <label
+              aria-label={label}
               className="cursor-pointer leading-none after:absolute after:inset-0"
               htmlFor={`option-${value}`}
             />

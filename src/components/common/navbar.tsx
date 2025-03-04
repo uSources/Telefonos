@@ -16,7 +16,7 @@ export function Navbar() {
           "uppercase -mx-4"
         )}
       >
-        <img src="/back.svg" alt="back" width={5} height={9} />
+        <img src="/back.svg" alt="" width={5} height={9} />
         Back
       </Link>
     </nav>
