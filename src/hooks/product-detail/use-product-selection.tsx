@@ -1,4 +1,4 @@
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 import { ColorOption, StorageOption } from "@/types/api";
@@ -15,7 +15,6 @@ export function useProductSelection({
   storageOptions,
 }: UseProductSelectionProperties) {
   const searchParams = useSearchParams();
-  const router = useRouter();
 
   const [price, setPrice] = useState(basePrice);
   const [storage, setStorage] = useState(
@@ -39,8 +38,15 @@ export function useProductSelection({
 
     if (color) params.set("color", color);
 
-    router.replace(`?${params.toString()}`, { scroll: false });
-  }, [storage, color, router]);
+    const newUrl = `?${params.toString()}`;
+
+    /** Prevent re-rendering https://github.com/vercel/next.js/discussions/18072  */
+    window.history.replaceState(
+      { ...window.history.state, as: newUrl, url: newUrl },
+      "",
+      newUrl
+    );
+  }, [storage, color]);
 
   useEffect(() => updateURL(), [storage, color, updateURL]);
 
