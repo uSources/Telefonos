@@ -6,6 +6,7 @@ import { CartList } from "@/components/cart/cart-list";
 
 export const metadata: Metadata = {
   title: "MBST | Tu carrito",
+  description: "Revisa los productos que has añadido al carrito",
 };
 
 export default function Cart() {
