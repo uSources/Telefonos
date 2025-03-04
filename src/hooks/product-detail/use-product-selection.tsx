@@ -3,17 +3,17 @@ import { useCallback, useEffect, useState } from "react";
 
 import { ColorOption, StorageOption } from "@/types/api";
 
-interface UsePhoneSelectionProperties {
+interface UseProductSelectionProperties {
   basePrice: number;
   colorOptions: ColorOption[];
   storageOptions: StorageOption[];
 }
 
-export function usePhoneSelection({
+export function useProductSelection({
   basePrice,
   colorOptions,
   storageOptions,
-}: UsePhoneSelectionProperties) {
+}: UseProductSelectionProperties) {
   const searchParams = useSearchParams();
   const router = useRouter();
 

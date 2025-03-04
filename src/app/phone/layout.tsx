@@ -1,8 +1,8 @@
 import { PropsWithChildren } from "react";
 
-import { Navbar } from "@/components/navbar";
+import { Navbar } from "@/components/common/navbar";
 
-export default function PhoneLayout({ children }: PropsWithChildren) {
+export default function ProductLayout({ children }: PropsWithChildren) {
   return (
     <>
       <Navbar />

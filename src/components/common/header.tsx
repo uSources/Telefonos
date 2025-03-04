@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 
-import { CartButton } from "./cart-button";
+import { CartButton } from "../cart/cart-button";
 
 export function Header() {
   return (

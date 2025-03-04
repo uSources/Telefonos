@@ -1,8 +1,8 @@
 import { Metadata } from "next";
 
-import { CartFooter } from "@/components/cart-footer";
-import { CartHeader } from "@/components/cart-header";
-import { CartList } from "@/components/cart-list";
+import { CartFooter } from "@/components/cart/cart-footer";
+import { CartHeader } from "@/components/cart/cart-header";
+import { CartList } from "@/components/cart/cart-list";
 
 export const metadata: Metadata = {
   title: "MBST | Tu carrito",

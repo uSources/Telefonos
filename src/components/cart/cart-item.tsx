@@ -2,10 +2,10 @@
 
 import Image from "next/image";
 
-import { useCart } from "@/context/cart";
+import { useCart } from "@/hooks/cart/use-cart";
 import type { CartItem } from "@/types/app";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 export function CartItem({
   id,

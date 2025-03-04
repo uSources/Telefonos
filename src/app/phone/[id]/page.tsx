@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 
+import { ProductConfigurator } from "@/components/product-detail/product-configurator";
+import { ProductSpecs } from "@/components/product-detail/product-specs";
+import { SimilarProducts } from "@/components/product-detail/similar-products";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PhoneConfigurator } from "@/modules/phone/phone-configurator";
-import { PhoneSpecs } from "@/modules/phone/phone-specs";
-import { SimilarPhones } from "@/modules/phone/similar-phones";
-import { getAllProducts, getProductById } from "@/services/product";
+import { getAllProducts } from "@/services/products/all-products";
+import { getProductById } from "@/services/products/product-detail";
 
-interface PhoneDetailsProps {
+interface ProductDetailsProps {
   params: Promise<{
     id: string;
   }>;
@@ -15,39 +16,39 @@ interface PhoneDetailsProps {
 export const revalidate = 3600;
 export const dynamicParams = true;
 
-export async function generateMetadata({ params }: PhoneDetailsProps) {
+export async function generateMetadata({ params }: ProductDetailsProps) {
   const { id } = await params;
-  const phone = await getProductById(id);
+  const product = await getProductById(id);
 
-  const image = phone.colorOptions.at(0)?.imageUrl;
+  const image = product.colorOptions.at(0)?.imageUrl;
 
   return {
-    title: `MBST | ${phone.name}`,
-    description: phone.description,
+    title: `MBST | ${product.name}`,
+    description: product.description,
     image,
   };
 }
 
 export async function generateStaticParams() {
-  const phones = await getAllProducts({});
+  const products = await getAllProducts({});
 
-  return phones.map(({ id }) => ({
+  return products.map(({ id }) => ({
     id,
   }));
 }
 
-export default async function PhoneDetails({ params }: PhoneDetailsProps) {
+export default async function ProductDetails({ params }: ProductDetailsProps) {
   const { id } = await params;
 
-  const phone = await getProductById(id);
+  const product = await getProductById(id);
 
   return (
     <article className="py-[100px] flex flex-col gap-[154px]">
       <Suspense fallback={<Skeleton className="w-full h-96" />}>
-        <PhoneConfigurator phone={phone} />
+        <ProductConfigurator product={product} />
       </Suspense>
-      <PhoneSpecs specs={phone.specs} />
-      <SimilarPhones similarProducts={phone.similarProducts} />
+      <ProductSpecs specs={product.specs} />
+      <SimilarProducts similarProducts={product.similarProducts} />
     </article>
   );
 }

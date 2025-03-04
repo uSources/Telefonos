@@ -1,9 +1,9 @@
 import { Suspense } from "react";
 
-import { Search } from "@/components/search";
+import { Search } from "@/components/common/search";
+import { ProductList } from "@/components/products/products-list";
+import { ProductSkeleton } from "@/components/products/products-skeleton";
 import { Skeleton } from "@/components/ui/skeleton";
-import { HomePhoneList } from "@/modules/home/home-phone-list";
-import { HomeSkeleton } from "@/modules/home/home-skeleton";
 
 interface HomeProperties {
   searchParams: Promise<{
@@ -20,8 +20,11 @@ export default async function Home({ searchParams }: HomeProperties) {
       <Suspense fallback={<Skeleton className="h-8 w-full" />}>
         <Search />
       </Suspense>
-      <Suspense key={`product-${page}-${search}`} fallback={<HomeSkeleton />}>
-        <HomePhoneList page={page} search={search} />
+      <Suspense
+        key={`product-${page}-${search}`}
+        fallback={<ProductSkeleton />}
+      >
+        <ProductList page={page} search={search} />
       </Suspense>
     </>
   );

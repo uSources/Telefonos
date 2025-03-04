@@ -1,14 +1,14 @@
 import Link from "next/link";
 
-import PhoneCard from "@/components/phone-card";
-import { getAllProducts } from "@/services/product";
+import PhoneCard from "@/components/common/product-card";
+import { getAllProducts } from "@/services/products/all-products";
 
 type ProductsProperties = {
   page: number;
   search: string;
 };
 
-export async function HomePhoneList({ page, search }: ProductsProperties) {
+export async function ProductList({ page, search }: ProductsProperties) {
   const phones = await getAllProducts({ page, search });
 
   if (phones && phones.length <= 0) {

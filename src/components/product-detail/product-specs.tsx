@@ -1,11 +1,11 @@
 import { labelVariants } from "@/components/ui/label";
 import { Specs } from "@/types/app";
 
-interface PhoneSpecsProps {
+interface ProductSpecsProps {
   specs: Specs;
 }
 
-export function PhoneSpecs({ specs }: PhoneSpecsProps) {
+export function ProductSpecs({ specs }: ProductSpecsProps) {
   return (
     <section className="flex flex-col gap-10">
       <h2 className={labelVariants({ size: "large" })}>SPECIFICATIONS</h2>

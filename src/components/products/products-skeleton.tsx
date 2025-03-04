@@ -1,6 +1,6 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
-export function HomeSkeleton() {
+export function ProductSkeleton() {
   return (
     <>
       <Skeleton className="h-4 mt-3 w-24" />

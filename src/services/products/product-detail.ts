@@ -1,34 +1,13 @@
 import { fetchWith } from "@/lib/fetch";
-import { Phone, PhoneDetail as PhoneDetailAPI } from "@/types/api";
-import { PhoneDetail, Specs } from "@/types/app";
-
-export async function getAllProducts({
-  search = "",
-  page = 1,
-}: {
-  search?: string;
-  page?: number;
-}) {
-  const searchParams = new URLSearchParams({
-    limit: "20",
-    offset: (Math.max(0, page - 1) * 20).toString(),
-    search,
-  });
-
-  return await fetchWith<Phone[]>(`/products?${searchParams.toString()}`, {
-    next: {
-      revalidate: 3600,
-      tags: [`products-${searchParams.toString()}`],
-    },
-  });
-}
+import { ProductDetail as ProductDetailAPI } from "@/types/api";
+import { ProductDetail, Specs } from "@/types/app";
 
 function transformSpecs({
   brand,
   description,
   name,
   specs,
-}: PhoneDetailAPI): Specs {
+}: ProductDetailAPI): Specs {
   {
     return [
       {
@@ -79,8 +58,8 @@ function transformSpecs({
   }
 }
 
-export async function getProductById(id: string): Promise<PhoneDetail> {
-  const phone = await fetchWith<PhoneDetailAPI>(`/products/${id}`, {
+export async function getProductById(id: string): Promise<ProductDetail> {
+  const product = await fetchWith<ProductDetailAPI>(`/products/${id}`, {
     next: {
       revalidate: 3600,
       tags: [`products-${id}`],
@@ -88,7 +67,7 @@ export async function getProductById(id: string): Promise<PhoneDetail> {
   });
 
   return {
-    ...phone,
-    specs: transformSpecs(phone),
+    ...product,
+    specs: transformSpecs(product),
   };
 }

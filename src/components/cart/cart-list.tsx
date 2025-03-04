@@ -2,10 +2,11 @@
 
 import dynamic from "next/dynamic";
 
-import { useCart } from "@/context/cart";
+import { useCart } from "@/hooks/cart/use-cart";
+
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 import { CartItem } from "./cart-item";
-import { ScrollArea, ScrollBar } from "./ui/scroll-area";
 
 function Component() {
   const { items } = useCart();

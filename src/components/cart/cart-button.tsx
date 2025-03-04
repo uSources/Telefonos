@@ -4,9 +4,9 @@
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
-import { useCart } from "@/context/cart";
+import { useCart } from "@/hooks/cart/use-cart";
 
-import { buttonVariants } from "./ui/button";
+import { buttonVariants } from "../ui/button";
 
 function Component() {
   const { count } = useCart();

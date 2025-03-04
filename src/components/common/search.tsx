@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { ChangeEventHandler, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 
-import { Input } from "./ui/input";
+import { Input } from "../ui/input";
 
 export function Search() {
   const router = useRouter();

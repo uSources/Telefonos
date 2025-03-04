@@ -2,9 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 
-import { CartProvider } from "@/context/cart";
-
-import { Header } from "../components/header";
+import { Header } from "@/components/common/header";
+import { CartProvider } from "@/hooks/cart/use-cart";
 
 export const metadata: Metadata = {
   title: "MBST",

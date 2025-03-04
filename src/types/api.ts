@@ -1,4 +1,4 @@
-export interface Phone {
+export interface Product {
   id: string;
   brand: string;
   name: string;
@@ -17,7 +17,7 @@ export interface StorageOption {
   price: number;
 }
 
-export interface PhoneDetail {
+export interface ProductDetail {
   id: string;
   brand: string;
   name: string;
@@ -26,7 +26,7 @@ export interface PhoneDetail {
   colorOptions: ColorOption[];
   storageOptions: StorageOption[];
   specs: Specs;
-  similarProducts: Phone[];
+  similarProducts: Product[];
 }
 
 export interface Specs {

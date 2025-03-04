@@ -5,22 +5,21 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { v4 as uuidv4 } from "uuid";
 
-import { ColorRadioGroup } from "@/components/color-radio-group";
-import { StorageRadioGroup } from "@/components/storage-radio-group";
+import { ColorRadioGroup } from "@/components/common/color-radio-group";
+import { StorageRadioGroup } from "@/components/common/storage-radio-group";
 import { Button } from "@/components/ui/button";
 import { labelVariants } from "@/components/ui/label";
-import { useCart } from "@/context/cart";
-import { PhoneDetail } from "@/types/api";
+import { useCart } from "@/hooks/cart/use-cart";
+import { useProductSelection } from "@/hooks/product-detail/use-product-selection";
+import { ProductDetail } from "@/types/api";
 
-import { usePhoneSelection } from "./use-phone-selection";
-
-interface PhoneConfiguratorProperties {
-  phone: Omit<PhoneDetail, "specs">;
+interface ProductConfiguratorProperties {
+  product: Omit<ProductDetail, "specs">;
 }
 
-export function PhoneConfigurator({
-  phone: { basePrice, colorOptions, storageOptions, name },
-}: PhoneConfiguratorProperties) {
+export function ProductConfigurator({
+  product: { basePrice, colorOptions, storageOptions, name },
+}: ProductConfiguratorProperties) {
   const {
     storage,
     color,
@@ -28,7 +27,7 @@ export function PhoneConfigurator({
     preview,
     handleStorageChange,
     handleColorChange,
-  } = usePhoneSelection({ basePrice, colorOptions, storageOptions });
+  } = useProductSelection({ basePrice, colorOptions, storageOptions });
 
   const router = useRouter();
   const { addItem } = useCart();

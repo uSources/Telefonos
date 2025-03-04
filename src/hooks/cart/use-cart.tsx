@@ -74,8 +74,8 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     localStorage.setItem("cart", JSON.stringify(state));
   }, [state]);
 
-  const addItem = (phone: CartItem) =>
-    dispatch({ type: "ADD_ITEM", payload: phone });
+  const addItem = (product: CartItem) =>
+    dispatch({ type: "ADD_ITEM", payload: product });
   const removeItem = (id: string) =>
     dispatch({ type: "REMOVE_ITEM", payload: id });
   const clearCart = () => dispatch({ type: "CLEAR_CART" });

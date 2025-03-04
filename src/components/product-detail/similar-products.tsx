@@ -1,15 +1,15 @@
 import Link from "next/link";
 
-import PhoneCard from "@/components/phone-card";
+import { ProductCard } from "@/components/common/product-card";
 import { labelVariants } from "@/components/ui/label";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
-import { Phone } from "@/types/api";
+import { Product } from "@/types/api";
 
-interface SimilarPhonesProps {
-  similarProducts: Phone[];
+interface SimilarProductsProps {
+  similarProducts: Product[];
 }
 
-export function SimilarPhones({ similarProducts }: SimilarPhonesProps) {
+export function SimilarProducts({ similarProducts }: SimilarProductsProps) {
   return (
     <section className="flex flex-col gap-10">
       <h2 className={labelVariants({ size: "large" })}>SIMILAR ITEMS</h2>
@@ -17,8 +17,8 @@ export function SimilarPhones({ similarProducts }: SimilarPhonesProps) {
         <div className="grid grid-flow-col grid-rows-1 pb-10">
           {similarProducts.map(
             ({ basePrice, brand, id, imageUrl, name }, index) => (
-              <Link href={`/phone/${id}`} key={index}>
-                <PhoneCard
+              <Link href={`/product/${id}`} key={index}>
+                <ProductCard
                   basePrice={basePrice}
                   brand={brand}
                   imageUrl={imageUrl}

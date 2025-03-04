@@ -2,9 +2,9 @@
 
 import dynamic from "next/dynamic";
 
-import { useCart } from "@/context/cart";
+import { useCart } from "@/hooks/cart/use-cart";
 
-import { labelVariants } from "./ui/label";
+import { labelVariants } from "../ui/label";
 
 function Component() {
   const { count } = useCart();

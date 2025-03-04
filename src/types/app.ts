@@ -1,4 +1,4 @@
-import { Phone, PhoneDetail as PhoneDetailAPI } from "./api";
+import { Product, ProductDetail as ProductDetailAPI } from "./api";
 
 interface Spec {
   label: string;
@@ -7,11 +7,11 @@ interface Spec {
 
 export type Specs = Spec[];
 
-export interface PhoneDetail extends Omit<PhoneDetailAPI, "specs"> {
+export interface ProductDetail extends Omit<ProductDetailAPI, "specs"> {
   specs: Specs;
 }
 
-export interface CartItem extends Omit<Phone, "basePrice" | "brand"> {
+export interface CartItem extends Omit<Product, "basePrice" | "brand"> {
   price: number;
   storage: string;
   color: string;

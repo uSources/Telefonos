@@ -1,6 +1,6 @@
 import type { RadioGroupProps } from "@radix-ui/react-radio-group";
 
-import { RadioGroupItem, RadioGroup } from "./ui/radio-group";
+import { RadioGroupItem, RadioGroup } from "../ui/radio-group";
 
 type ColorRadioGroupProperties = RadioGroupProps & {
   options: ColorOption[];

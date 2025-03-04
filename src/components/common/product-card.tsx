@@ -3,7 +3,7 @@ import { memo } from "react";
 
 import { cn } from "@/lib/utils";
 
-type PhoneCardProperties = {
+type ProductCardProperties = {
   imageUrl: string;
   name: string;
   basePrice: number;
@@ -11,13 +11,13 @@ type PhoneCardProperties = {
   className?: string;
 };
 
-export default memo(function PhoneCard({
+export const ProductCard = memo(function ProductCard({
   imageUrl,
   name,
   basePrice,
   brand,
   className,
-}: PhoneCardProperties) {
+}: ProductCardProperties) {
   return (
     <article
       className={cn(

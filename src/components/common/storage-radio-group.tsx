@@ -2,8 +2,8 @@ import type { RadioGroupProps } from "@radix-ui/react-radio-group";
 
 import { cn } from "@/lib/utils";
 
-import Label from "./ui/label";
-import { RadioGroup, RadioGroupItem } from "./ui/radio-group";
+import Label from "../ui/label";
+import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 
 type StorageRadioGroupProperties = RadioGroupProps & {
   options: StorageOption[];
