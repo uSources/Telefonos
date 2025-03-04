@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import PhoneCard from "@/components/common/product-card";
+import { ProductCard } from "@/components/common/product-card";
 import { getAllProducts } from "@/services/products/all-products";
 
 type ProductsProperties = {
@@ -23,7 +23,7 @@ export async function ProductList({ page, search }: ProductsProperties) {
       <section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-5 my-12">
         {phones.map(({ basePrice, brand, imageUrl, id, name }, index) => (
           <Link href={`/phone/${id}`} key={index}>
-            <PhoneCard
+            <ProductCard
               key={index}
               basePrice={basePrice}
               brand={brand}
