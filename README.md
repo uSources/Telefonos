@@ -1,8 +1,6 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 📌 Comenzando
 
-## Getting Started
-
-First, run the development server:
+Para iniciar el servidor de desarrollo, ejecuta uno de los siguientes comandos:
 
 ```bash
 npm run dev
@@ -14,23 +12,82 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Luego, abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver el resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# 🚀 Stack Tecnológico
 
-## Learn More
+Este proyecto ha sido desarrollado con las últimas versiones estables de **React 19** y **Next.js 15**, aprovechando características clave como minificación automática y optimización de imágenes.
 
-To learn more about Next.js, take a look at the following resources:
+Además, se han utilizado las siguientes librerías para mejorar la experiencia de desarrollo:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Shadcn** → Construcción de componentes UI.
+- **Sonner** → Gestión de notificaciones tipo toast.
+- **uuid** → Generación de identificadores únicos.
+- **Tailwind CSS 4** → Estilos y diseño responsivo.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+# 🏗️ Arquitectura
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+El proyecto hace un uso intensivo de **React Server Components (RSC)**. Todas las llamadas a la API se realizan desde el servidor, protegiendo tanto la dirección del endpoint como el token de autenticación.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Para mejorar la experiencia del usuario, las respuestas de la API se **cachean por 1 hora** y pueden ser invalidadas mediante tags.
+
+**Estrategia de renderizado:**
+
+- Todas las páginas se generan de forma estática, excepto el carrito de compras.
+- Se utiliza **ISR (Incremental Static Regeneration)** para renderizar dinámicamente los detalles de los productos.
+- Se usa el componente `Image` de Next.js para optimizar y cachear imágenes automáticamente.
+- Las etiquetas **meta** se generan dinámicamente en cada página para mejorar el **SEO** y la accesibilidad.
+
+---
+
+# 📂 Estructura de carpetas
+
+Se ha optado por una organización basada en **tipo y feature**, ya que el proyecto no es excesivamente grande.
+
+Las principales carpetas incluyen:
+
+- **components/** → Componentes reutilizables.
+- **hooks/** → Hooks personalizados.
+- **lib/** → Funciones auxiliares y utilidades.
+- **services/** → Llamadas a la API.
+- **types/** → Definiciones de tipos y modelos.
+
+Cada una de estas carpetas se desglosa por funcionalidad, como el carrito de compras, componentes comunes o la vista de detalle de un producto.
+
+Si el proyecto creciera en tamaño, se podría considerar migrar a una **Screaming Architecture**, optimizando la organización para proyectos de mayor escala.
+
+📖 Más información: [Ver documentación](https://dev.to/itswillt/folder-structures-in-react-projects-3dp8)
+
+---
+
+# 🚢 Despliegue en Vercel
+
+El repositorio está conectado con **GitHub**, y cada cambio en la rama `main` se despliega automáticamente en **Vercel**.
+
+🔗 **[Ver proyecto en producción](https://telefonos-rose.vercel.app/)**
+
+---
+
+# 🧪 Pruebas automatizadas con Playwright
+
+Este proyecto incluye pruebas de integración continua con **Playwright**.
+
+### 📌 Ejecutar pruebas localmente:
+
+Con interfaz gráfica:
+
+```bash
+npm run e2e:ui
+```
+
+Modo sin interfaz (CI):
+
+```bash
+npm run e2e:ci
+```
+
+Las pruebas se ejecutan automáticamente en cada commit para garantizar la estabilidad del proyecto. Los resultados pueden consultarse en la sección **GitHub Actions**.
