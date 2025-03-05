@@ -11,7 +11,10 @@ import { CartItem } from "./cart-item";
 function Component() {
   const { items } = useCart();
   return (
-    <div className="flex-1 h-full overflow-hidden my-6 md:my-12">
+    <div
+      className="flex-1 h-full overflow-hidden my-6 md:my-12"
+      data-testid="cart-list"
+    >
       <ScrollArea className="flex-1 h-full">
         {items.map(({ id, color, imageUrl, name, price, storage }) => (
           <CartItem

@@ -11,7 +11,7 @@ interface SimilarProductsProps {
 
 export function SimilarProducts({ similarProducts }: SimilarProductsProps) {
   return (
-    <section className="flex flex-col gap-10">
+    <section className="flex flex-col gap-10" data-testid="similar-items">
       <h2 className={labelVariants({ size: "large" })}>SIMILAR ITEMS</h2>
       <ScrollArea className="whitespace-nowrap">
         <div className="grid grid-flow-col grid-rows-1 pb-10">

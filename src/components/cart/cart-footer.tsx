@@ -38,7 +38,7 @@ function Component() {
       <div className="flex md:hidden flex-col items-center mb-6">
         <div className="mb-6 flex flex-row flex-nowrap gap-6 text-sm w-full">
           <p>TOTAL</p>
-          <p>{totalPrice} EUR</p>
+          <p data-testid="cart-price">{totalPrice} EUR</p>
         </div>
         <div className="flex items-center gap-3 w-full">
           <Link
