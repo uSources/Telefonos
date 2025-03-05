@@ -20,7 +20,7 @@ jobs:
          node-version: lts/*
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --force
 
       - name: Run Jest tests
         run: npm test
