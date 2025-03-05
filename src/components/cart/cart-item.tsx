@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useCart } from "@/hooks/cart/use-cart";
 import type { CartItem } from "@/types/app";
 
+import { Body } from "../common/typography/body";
 import { Button } from "../ui/button";
 
 export function CartItem({
@@ -27,7 +28,7 @@ export function CartItem({
           fill
         />
       </div>
-      <div className="flex flex-col items-start text-xs font-light py-10">
+      <Body as="div" className="flex flex-col items-start py-10">
         <h2 className="uppercase">{name}</h2>
         <p className="uppercase">
           {storage} | {color}
@@ -42,7 +43,7 @@ export function CartItem({
             Remove
           </Button>
         </footer>
-      </div>
+      </Body>
     </article>
   );
 }

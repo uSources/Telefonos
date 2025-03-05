@@ -2,6 +2,8 @@ import type { RadioGroupProps } from "@radix-ui/react-radio-group";
 
 import { RadioGroupItem, RadioGroup } from "../ui/radio-group";
 
+import { Body } from "./typography/body";
+
 type ColorRadioGroupProperties = RadioGroupProps & {
   options: ColorOption[];
 };
@@ -41,7 +43,11 @@ export function ColorRadioGroup({
           </div>
         ))}
       </RadioGroup>
-      {option && <p className="block text-xs font-light">{option.label}</p>}
+      {option && (
+        <Body as="p" className="block">
+          {option.label}
+        </Body>
+      )}
     </div>
   );
 }
