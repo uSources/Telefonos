@@ -16,20 +16,16 @@ export function useProductSelection({
 }: UseProductSelectionProperties) {
   const searchParams = useSearchParams();
 
-  const [price, setPrice] = useState(basePrice);
   const [storage, setStorage] = useState(
     searchParams.get("storage") || undefined
   );
   const [color, setColor] = useState(searchParams.get("color") || undefined);
-  const [preview, setPreview] = useState(() => {
-    const selectedColor = colorOptions.find(
-      (option) => option.hexCode === color
-    );
-
-    if (!selectedColor) return colorOptions.at(0)?.imageUrl || "";
-
-    return selectedColor.imageUrl;
-  });
+  const [preview, setPreview] = useState(() =>
+    getPreviewImage(colorOptions, searchParams.get("color"))
+  );
+  const [price, setPrice] = useState(() =>
+    getPrice(basePrice, storageOptions, searchParams.get("storage"))
+  );
 
   const updateURL = useCallback(() => {
     const params = new URLSearchParams();
@@ -50,26 +46,28 @@ export function useProductSelection({
 
   useEffect(() => updateURL(), [storage, color, updateURL]);
 
+  useEffect(() => {
+    if (!storage) return;
+
+    const currentPrice = getPrice(basePrice, storageOptions, storage);
+
+    setPrice(currentPrice);
+  }, [storage, storageOptions, basePrice]);
+
+  useEffect(() => {
+    if (!color) return;
+
+    const previewImage = getPreviewImage(colorOptions, color);
+
+    setPreview(previewImage);
+  }, [color, colorOptions]);
+
   const handleStorageChange = (value: string) => {
     setStorage(value);
-
-    const storageOption = storageOptions.find(
-      (option) => option.capacity === value
-    );
-
-    if (!storageOption) return;
-
-    setPrice(storageOption.price);
   };
 
   const handleColorChange = (value: string) => {
     setColor(value);
-
-    const colorOption = colorOptions.find((option) => option.hexCode === value);
-
-    if (!colorOption) return;
-
-    setPreview(colorOption.imageUrl);
   };
 
   return {
@@ -80,4 +78,29 @@ export function useProductSelection({
     handleStorageChange,
     handleColorChange,
   };
+}
+
+function getPrice(
+  basePrice: number,
+  storageOptions: StorageOption[],
+  storage: string | null
+): number {
+  if (!storage) return basePrice;
+
+  const storageOption = storageOptions.find(
+    (option) => option.capacity === storage
+  );
+  return storageOption?.price || basePrice;
+}
+
+function getPreviewImage(
+  colorOptions: ColorOption[],
+  color: string | null
+): string {
+  const baseImageUrl = colorOptions[0].imageUrl;
+
+  if (!color) return baseImageUrl;
+
+  const colorOption = colorOptions.find((option) => option.name === color);
+  return colorOption?.imageUrl || baseImageUrl;
 }
