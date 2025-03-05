@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const homeURL = "http://localhost:3000";
+const homeURL = "/";
 
 test.beforeEach(async ({ page }) => {
   await page.goto(homeURL);
@@ -30,11 +30,11 @@ test("searchbar cross clears the search query", async ({ page }) => {
     .getByRole("textbox", { name: "Search for a smartphone..." })
     .fill("iphone");
 
-  await page.waitForURL("http://localhost:3000/?q=iphone");
+  await page.waitForURL("/?q=iphone");
 
   await page.getByRole("button", { name: "clear" }).click();
 
-  await page.waitForURL("http://localhost:3000/?q=");
+  await page.waitForURL("/?q=");
 });
 
 test("searchbar updates the url with the search query", async ({ page }) => {
@@ -42,11 +42,11 @@ test("searchbar updates the url with the search query", async ({ page }) => {
     .getByRole("textbox", { name: "Search for a smartphone..." })
     .fill("iphone");
 
-  await page.waitForURL("http://localhost:3000/?q=iphone");
+  await page.waitForURL("/?q=iphone");
 });
 
 test("should display twenty (tuenti) results by default", async ({ page }) => {
-  expect(await page.getByText("RESULTS")).toContainText("20 RESULTS");
+  expect(await page.getByText("20 RESULTS")).toBeVisible();
 });
 
 test("should display two results searching for iphone", async ({ page }) => {
@@ -54,9 +54,9 @@ test("should display two results searching for iphone", async ({ page }) => {
     .getByRole("textbox", { name: "Search for a smartphone..." })
     .fill("iphone");
 
-  await page.waitForURL("http://localhost:3000/?q=iphone");
+  await page.waitForURL("/?q=iphone");
 
-  expect(await page.getByText("RESULTS")).toContainText("2 RESULTS");
+  expect(await page.getByText("2 RESULTS")).toBeVisible();
 });
 
 test("should redirect to product detail", async ({ page }) => {
@@ -65,5 +65,5 @@ test("should redirect to product detail", async ({ page }) => {
     .filter({ hasText: "SamsungGalaxy S24 Ultra1329" })
     .click();
 
-  await page.waitForURL("http://localhost:3000/product/SMG-S24U");
+  await page.waitForURL("/product/SMG-S24U");
 });

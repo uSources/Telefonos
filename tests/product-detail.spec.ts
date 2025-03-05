@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const detailURL = "http://localhost:3000/product/SMG-S24U";
+const detailURL = "/product/SMG-S24U";
 
 test.beforeEach(async ({ page }) => {
   await page.goto(detailURL);
@@ -13,7 +13,7 @@ test("has back button", async ({ page }) => {
 test("back button redirects to home page", async ({ page }) => {
   await page.getByRole("link", { name: "Back" }).click();
 
-  await page.waitForURL("http://localhost:3000/");
+  await page.waitForURL("/");
 });
 
 test("should have a product image", async ({ page }) => {
@@ -81,7 +81,7 @@ test("should update url value when storage and color are selected", async ({
     .getByRole("radio", { name: "Titanium Yellow" })
     .check({ force: true });
 
-  await page.waitForURL(`${detailURL}?storage=512+GB&color=%23FFFF00`);
+  await page.waitForURL(`${detailURL}?storage=512+GB&color=Titanium+Yellow`);
 });
 
 test("should enable add to cart button when selecting storage and color", async ({
@@ -93,7 +93,7 @@ test("should enable add to cart button when selecting storage and color", async 
     .getByRole("radio", { name: "Titanium Yellow" })
     .check({ force: true });
 
-  await page.waitForURL(`${detailURL}?storage=512+GB&color=%23FFFF00`);
+  await page.waitForURL(`${detailURL}?storage=512+GB&color=Titanium+Yellow`);
 
   expect(await page.getByRole("button", { name: "Add to cart" })).toBeEnabled();
 });
@@ -107,7 +107,7 @@ test("should update image product when new color is picked", async ({
     .getByRole("radio", { name: "Titanium Yellow" })
     .check({ force: true });
 
-  await page.waitForURL(`${detailURL}?color=%23FFFF00`);
+  await page.waitForURL(`${detailURL}?color=Titanium+Yellow`);
 
   expect(image).toHaveAttribute("src", /titanium-yellow.png/g);
 });

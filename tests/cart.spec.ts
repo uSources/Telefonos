@@ -1,68 +1,70 @@
 import { test, expect } from "@playwright/test";
 
-const detailURL = "http://localhost:3000/product/SMG-S24U";
+const detailURL = "/product/SMG-S24U";
 
-const cartURL = "http://localhost:3000/cart";
+const cartURL = "/cart";
 
-test.beforeEach(async ({ page }) => {
-  await page.goto(`${detailURL}?storage=512+GB&color=%23FFFF00`);
+test.describe.serial("Cart", () => {
+  test.beforeEach(async ({ page }) => {
+    await page.goto(`${detailURL}?storage=512+GB&color=Titanium+Yellow`);
 
-  await page.getByRole("button", { name: "Add to cart" }).click();
+    await page.getByRole("button", { name: "Add to cart" }).click();
 
-  expect(await page.getByRole("link", { name: "bag" })).toContainText("1");
+    expect(await page.getByRole("link", { name: "bag" })).toContainText("1");
 
-  await page.waitForURL(cartURL);
+    await page.waitForURL(cartURL);
 
-  await page.waitForTimeout(500);
-});
+    await page.waitForTimeout(500);
+  });
 
-test("should update price when a new product is added", async ({ page }) => {
-  const price = await page.getByTestId("cart-price");
+  test("should update price when a new product is added", async ({ page }) => {
+    const price = await page.getByTestId("cart-price");
 
-  expect(price).toHaveText("1329 EUR");
-});
+    expect(price).toHaveText("1329 EUR");
+  });
 
-test("should have cart title", async ({ page }) => {
-  await page.goto(cartURL);
+  test("should have cart title", async ({ page }) => {
+    expect(await page.getByRole("heading", { name: "Cart (1)" })).toContainText(
+      "1"
+    );
+  });
 
-  await page.waitForTimeout(500);
+  test("should have a one product in the cart", async ({ page }) => {
+    const container = await page.getByTestId("cart-list").getByRole("article");
+    expect(container).toHaveCount(1);
+  });
 
-  expect(await page.getByRole("heading", { name: "Cart (1)" })).toContainText(
-    "1"
-  );
-});
+  test("should remove product from the cart", async ({ page }) => {
+    await page.getByRole("button", { name: "Remove" }).click();
 
-test("should have a one product in the cart", async ({ page }) => {
-  const container = await page.getByTestId("cart-list").getByRole("article");
-  expect(container).toHaveCount(1);
-});
+    expect(await page.getByRole("heading", { name: "Cart (0)" })).toContainText(
+      "0"
+    );
+  });
 
-test("should remove product from the cart", async ({ page }) => {
-  await page.getByRole("button", { name: "Remove" }).click();
+  test('should redirect to list of products when "continue shopping" is clicked', async ({
+    page,
+  }) => {
+    await page.getByRole("link", { name: "Continue shopping" }).click();
 
-  expect(await page.getByRole("heading", { name: "Cart (0)" })).toContainText(
-    "0"
-  );
-});
+    await page.waitForURL("/");
+  });
 
-test('should redirect to list of products when "continue shopping" is clicked', async ({
-  page,
-}) => {
-  await page.getByRole("link", { name: "Continue shopping" }).click();
+  test("pay button must be disabled when the cart is empty", async ({
+    page,
+  }) => {
+    await page.getByRole("button", { name: "Remove" }).click();
 
-  await page.waitForURL("http://localhost:3000/");
-});
+    expect(await page.getByRole("button", { name: "Pay" })).toBeDisabled();
+  });
 
-test("pay button must be disabled when the cart is empty", async ({ page }) => {
-  await page.getByRole("button", { name: "Remove" }).click();
+  test("price must be updated when the product is removed", async ({
+    page,
+  }) => {
+    const price = await page.getByTestId("cart-price");
 
-  expect(await page.getByRole("button", { name: "Pay" })).toBeDisabled();
-});
+    await page.getByRole("button", { name: "Remove" }).click();
 
-test("price must be updated when the product is removed", async ({ page }) => {
-  const price = await page.getByTestId("cart-price");
-
-  await page.getByRole("button", { name: "Remove" }).click();
-
-  expect(price).toHaveText("0 EUR");
+    expect(price).toHaveText("0 EUR");
+  });
 });
