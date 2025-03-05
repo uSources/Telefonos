@@ -96,7 +96,7 @@ export function ProductConfigurator({
             onValueChange={handleColorChange}
             options={colorOptions.map(({ name, hexCode }) => ({
               hex: hexCode,
-              value: hexCode,
+              value: name,
               label: name,
             }))}
           />
