@@ -80,7 +80,7 @@ El repositorio está conectado con **GitHub**, y cada cambio en la rama `main` s
 
 # 🧪 Pruebas Automatizadas con Playwright
 
-Este proyecto incluye pruebas de integración continua con **Playwright**.
+En la carpeta **/tests** encontramos una batería de tests e2e que se centran en las principales pantallas, como el listado de productos, el detalle del producto y el carrito de compra.
 
 ### 📌 Ejecutar pruebas localmente:
 
@@ -100,6 +100,23 @@ Las pruebas se ejecutan automáticamente en cada commit para garantizar la estab
 
 ---
 
+# 🧪 Testing con Jest
+
+Encontramos también una batería de tests para los **hooks reutilizables**, tales como:
+
+- `use-product-selection`
+- `use-cart`
+
+### 📌 Ejecutar pruebas localmente:
+
+```bash
+npm run test
+```
+
+Las pruebas se ejecutan automáticamente en cada commit para garantizar la estabilidad del proyecto. Los resultados pueden consultarse en la sección **GitHub Actions**.
+
+---
+
 # 🔮 Futuras Mejoras
 
 - 🛒 **Filtros y ordenación** en el listado de productos.
@@ -107,10 +124,8 @@ Las pruebas se ejecutan automáticamente en cada commit para garantizar la estab
 - 🚀 Implementación de **upselling en el carrito**.
 - 📑 **Paginación** en la lista de productos.
 - 🎨 Cambio de **color en el listado**.
-
----
-
-He mejorado la redacción y formato del apartado de **Lighthouse** para que sea más claro y fluido:
+- 🔧 Añadir más **tests unitarios** al resto de componentes.
+- 🖼️ Implementar **tests de regresión visual** a los componentes UI.
 
 ---
 
