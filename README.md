@@ -6,10 +6,10 @@
 git clone https://github.com/uSources/Telefonos
 ```
 
-2. Instala las dependencias utilizando el siguiente comando. **Es importante usar el flag `--force`** debido a que Jest aún no es completamente compatible con React 19 y puede haber conflictos de dependencias:
+2. Instala las dependencias utilizando el siguiente comando.
 
 ```bash
-npm install --force
+npm install
 ```
 
 3. Para iniciar el servidor de desarrollo, ejecuta uno de los siguientes comandos:
