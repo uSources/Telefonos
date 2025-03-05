@@ -18,7 +18,7 @@ export function fetchWith<R = unknown>(
       }
 
       const data = await response.json();
-      console.log("✅ Respuesta recibida:", data);
+      //console.log("✅ Respuesta recibida:", data);
       return data as R;
     })
     .catch((error) => {
