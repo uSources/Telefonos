@@ -77,9 +77,9 @@ export function ProductConfigurator({
           </p>
         </div>
         <div className="flex flex-col gap-6">
-          <h3 className={labelVariants()}>
+          <h2 className={labelVariants()}>
             Storage ¿how much space you do need?
-          </h3>
+          </h2>
           <StorageRadioGroup
             value={storage}
             onValueChange={handleStorageChange}
@@ -90,7 +90,7 @@ export function ProductConfigurator({
           />
         </div>
         <div className="flex flex-col gap-6">
-          <h3 className={labelVariants()}>Color. pick your favorite.</h3>
+          <h2 className={labelVariants()}>Color. pick your favorite.</h2>
           <ColorRadioGroup
             value={color}
             onValueChange={handleColorChange}
