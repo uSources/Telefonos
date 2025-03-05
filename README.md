@@ -109,3 +109,27 @@ Las pruebas se ejecutan automáticamente en cada commit para garantizar la estab
 - 🎨 Cambio de **color en el listado**.
 
 ---
+
+He mejorado la redacción y formato del apartado de **Lighthouse** para que sea más claro y fluido:
+
+---
+
+# 📊 Resultados en Lighthouse
+
+Se han realizado pruebas de rendimiento, accesibilidad y buenas prácticas con **Lighthouse** en las principales secciones del proyecto. A continuación, se muestran los resultados obtenidos:
+
+### 📍 Listado de productos
+
+![Listado de productos](assets/image.png)
+
+### 🛍️ Detalle de producto
+
+![Detalle de producto](assets/image-1.png)
+
+### 🛒 Carrito de compras
+
+![Carrito de compras](assets/image-2.png)
+
+Estos resultados garantizan un **buen rendimiento**, **accesibilidad óptima** y **mejores prácticas de desarrollo** en la aplicación.
+
+---
