@@ -30,7 +30,7 @@ export const ProductCard = memo(function ProductCard({
           className="object-contain"
           src={imageUrl}
           alt={name}
-          sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 20vw"
+          sizes="(max-width: 768px) 50vw, 20vw"
           priority
           fill
         />
