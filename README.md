@@ -94,6 +94,8 @@ El repositorio está conectado con **GitHub**, y cada cambio en la rama `main` s
 
 En la carpeta **/tests** encontramos una batería de tests e2e que se centran en las principales pantallas, como el listado de productos, el detalle del producto y el carrito de compra.
 
+Se asume que estas pruebas se realizan en un entorno de pruebas donde los datos permanecen constantes, asegurando que no haya cambios en las respuestas del sistema durante su ejecución.
+
 ### 📌 Ejecutar pruebas localmente:
 
 🔹 Con interfaz gráfica:
@@ -115,6 +117,8 @@ Las pruebas se ejecutan automáticamente en cada commit para garantizar la estab
 # 🧪 Testing con Jest
 
 Encontramos también una batería de tests para los **hooks reutilizables**, tales como:
+
+Se asume que estas pruebas se realizan en un entorno de pruebas donde los datos permanecen constantes, asegurando que no haya cambios en las respuestas del sistema durante su ejecución.
 
 - `use-product-selection`
 - `use-cart`
