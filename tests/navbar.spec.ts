@@ -7,21 +7,29 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("has logo", async ({ page }) => {
-  expect(await page.getByRole("link", { name: "logo" })).toBeVisible();
+  const logo = await page.getByRole("link", { name: "logo" });
+
+  await expect(logo).toBeVisible();
 });
 
 test("logo redirect to home page", async ({ page }) => {
-  await page.getByRole("link", { name: "logo" }).click();
+  const logo = await page.getByRole("link", { name: "logo" });
+
+  await logo.click();
 
   await page.waitForURL("/");
 });
 
 test("has cart button", async ({ page }) => {
-  expect(await page.getByRole("link", { name: "bag" })).toBeVisible();
+  const cartButton = await page.getByRole("link", { name: "bag" });
+
+  await expect(cartButton).toBeVisible();
 });
 
 test("cart button redirect to cart page", async ({ page }) => {
-  await page.getByRole("link", { name: "bag" }).click();
+  const cartButton = await page.getByRole("link", { name: "bag" });
+
+  await cartButton.click();
 
   await page.waitForURL("/cart");
 });

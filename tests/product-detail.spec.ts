@@ -7,79 +7,92 @@ test.beforeEach(async ({ page }) => {
 });
 
 test("has back button", async ({ page }) => {
-  expect(await page.getByRole("link", { name: "Back" })).toBeVisible();
+  const backButton = page.getByRole("link", { name: "Back" });
+
+  await expect(backButton).toBeVisible();
 });
 
 test("back button redirects to home page", async ({ page }) => {
-  await page.getByRole("link", { name: "Back" }).click();
+  const backButton = page.getByRole("link", { name: "Back" });
+
+  await backButton.click();
 
   await page.waitForURL("/");
 });
 
 test("should have a product image", async ({ page }) => {
-  expect(
-    await page.getByRole("img", { name: "Galaxy S24 Ultra" })
-  ).toBeVisible();
+  const image = page.getByRole("img", { name: "Galaxy S24 Ultra" });
+
+  await expect(image).toBeVisible();
 });
 
 test("should have a product title", async ({ page }) => {
-  expect(
-    await page.getByRole("heading", { name: "Galaxy S24 Ultra" })
-  ).toContainText("Galaxy S24 Ultra");
+  const heading = page.getByRole("heading", { name: "Galaxy S24 Ultra" });
+
+  await expect(heading).toContainText("Galaxy S24 Ultra");
 });
 
 test("should have a product base price", async ({ page }) => {
-  expect(await page.getByText("From 1329 EUR")).toBeVisible();
+  const price = page.getByText("From 1329 EUR");
+
+  await expect(price).toBeVisible();
 });
 
 test("should have specifications title", async ({ page }) => {
-  expect(
-    await page.getByRole("heading", { name: "Specifications" })
-  ).toBeVisible();
+  const heading = page.getByRole("heading", { name: "Specifications" });
+
+  await expect(heading).toBeVisible();
 });
 
 test("should have specs list", async ({ page }) => {
-  expect(await page.getByRole("list")).toBeVisible();
+  const specsList = page.getByRole("list");
+
+  await expect(specsList).toBeVisible();
 });
 
 test("should have similar products", async ({ page }) => {
-  expect(
-    await page.getByRole("heading", { name: "SIMILAR ITEMS" })
-  ).toBeVisible();
+  const heading = page.getByRole("heading", { name: "SIMILAR ITEMS" });
+
+  await expect(heading).toBeVisible();
 });
 
 test("should have similar products list", async ({ page }) => {
-  const container = await page.getByTestId("similar-items");
+  const container = page.getByTestId("similar-items");
 
-  expect(container).toBeVisible();
+  await expect(container).toBeVisible();
 });
 
 test("should have storage title", async ({ page }) => {
-  expect(
-    await page.getByRole("heading", { name: "Storage ¿how much space you" })
-  ).toBeVisible();
+  const title = page.getByRole("heading", {
+    name: "Storage ¿how much space you",
+  });
+
+  await expect(title).toBeVisible();
 });
 
 test("should have color title", async ({ page }) => {
-  expect(
-    await page.getByRole("heading", { name: "Color. pick your favorite." })
-  ).toBeVisible();
+  const title = page.getByRole("heading", {
+    name: "Color. pick your favorite.",
+  });
+
+  await expect(title).toBeVisible();
 });
 
 test("add to cart button must be disabled by default", async ({ page }) => {
-  expect(
-    await page.getByRole("button", { name: "Add to cart" })
-  ).toBeDisabled();
+  const button = page.getByRole("button", { name: "Add to cart" });
+
+  await expect(button).toBeDisabled();
 });
 
 test("should update url value when storage and color are selected", async ({
   page,
 }) => {
-  await page.getByText("512 GB").check();
+  const storageLabel = page.getByText("512 GB");
+  const colorLabel = page.getByRole("radio", { name: "Titanium Yellow" });
 
-  await page
-    .getByRole("radio", { name: "Titanium Yellow" })
-    .check({ force: true });
+  await storageLabel.check();
+
+  await colorLabel.check({ force: true });
 
   await page.waitForURL(`${detailURL}?storage=512+GB&color=Titanium+Yellow`);
 });
@@ -87,35 +100,40 @@ test("should update url value when storage and color are selected", async ({
 test("should enable add to cart button when selecting storage and color", async ({
   page,
 }) => {
-  await page.getByText("512 GB").check();
+  const storageLabel = page.getByText("512 GB");
+  const colorLabel = page.getByRole("radio", { name: "Titanium Yellow" });
 
-  await page
-    .getByRole("radio", { name: "Titanium Yellow" })
-    .check({ force: true });
+  await storageLabel.check();
+
+  await colorLabel.check({ force: true });
 
   await page.waitForURL(`${detailURL}?storage=512+GB&color=Titanium+Yellow`);
 
-  expect(await page.getByRole("button", { name: "Add to cart" })).toBeEnabled();
+  const cartButton = page.getByRole("button", { name: "Add to cart" });
+
+  await expect(cartButton).toBeEnabled();
 });
 
 test("should update image product when new color is picked", async ({
   page,
 }) => {
-  const image = await page.getByRole("img", { name: "Galaxy S24 Ultra" });
+  const image = page.getByRole("img", { name: "Galaxy S24 Ultra" });
 
-  await page
-    .getByRole("radio", { name: "Titanium Yellow" })
-    .check({ force: true });
+  const colorLabel = page.getByRole("radio", { name: "Titanium Yellow" });
+
+  await colorLabel.check({ force: true });
 
   await page.waitForURL(`${detailURL}?color=Titanium+Yellow`);
 
-  expect(image).toHaveAttribute("src", /titanium-yellow.png/g);
+  await expect(image).toHaveAttribute("src", /titanium-yellow.png/g);
 });
 
 test("should update price when new storage is picked", async ({ page }) => {
-  const price = await page.getByText("From 1329 EUR");
+  const price = page.getByText("From 1329 EUR");
 
-  await page.getByText("512 GB").check();
+  const storageLabel = page.getByText("512 GB");
 
-  expect(price).toContainText("1329 EUR");
+  await storageLabel.check();
+
+  await expect(price).toContainText("1329 EUR");
 });
