@@ -1,4 +1,5 @@
 import "./globals.css";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import type { Metadata } from "next";
 import { Toaster } from "sonner";
 
@@ -21,6 +22,7 @@ export default function RootLayout({
         <body className="antialiased min-h-screen">
           <Header />
           <Toaster />
+          <SpeedInsights />
           <main className="px-4 md:px-10 lg:px-content">{children}</main>
         </body>
       </CartProvider>
