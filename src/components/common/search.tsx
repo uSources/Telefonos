@@ -32,6 +32,7 @@ export function Search() {
       value={search}
       onChange={handleChange}
       className="mt-12"
+      role="searchbox"
     />
   );
 }
