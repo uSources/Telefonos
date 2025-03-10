@@ -72,7 +72,7 @@ export function ProductConfigurator({
         <div className="flex flex-col gap-2 font-light">
           <h1 className="uppercase text-2xl">{name}</h1>
           <p className="text-xl">
-            {isDisabled && "From "}
+            {!storage && "From "}
             {price} EUR
           </p>
         </div>
