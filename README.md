@@ -1,5 +1,18 @@
 # 📌 Comenzando
 
+
+## Primero tendremos que crear un fichero .env con las siguentes variables
+
+
+```env
+API_KEY=<valor_de_tu_api_key>
+API_URL=<valor_de_tu_api_url>
+```
+
+Estas variables permitirán que el servidor realice las llamadas correspondientes al backend.
+ 
+
+
 1. Clona el proyecto desde el repositorio oficial:
 
 ```bash
